@@ -1,8 +1,13 @@
-A distributed clustering algorithm for ad-hoc networks.
+# Go-DCA-MANET: Distributed Clustering for Mobile Ad Hoc Networks
 
-Every node has an ID and a unique weight >= 0.
+A Go program implementing a Distributed Clustering Algorithm (DCA) for efficient node organization within a Mobile Ad Hoc Network (MANET). This implementation uses a dominating set-based approach for cluster formation.
 
-After clustering:
-  1) Every ordinal node should have at least one clusterhead as a neighbor
-  2) Two clusetheads should not be neighbors
+## Features 
 
+* Distributed cluster formation and maintenance 
+* Adapts to the dynamic topology of MANETs
+
+## Installation 
+
+```bash
+go get github.com/GiorgosMarga/DCA-manet
