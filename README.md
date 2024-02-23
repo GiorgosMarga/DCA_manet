@@ -11,3 +11,10 @@ A Go program implementing a Distributed Clustering Algorithm (DCA) for efficient
 
 ```bash
 go get github.com/GiorgosMarga/DCA-manet
+
+
+# 1. Build the executable 
+go build
+
+# 2. Execute with a sample graph data file
+./CDA -f sample_graph.dot
