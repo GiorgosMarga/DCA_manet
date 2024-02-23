@@ -11,7 +11,7 @@ A Go program implementing a Distributed Clustering Algorithm (DCA) for efficient
 
 ```bash
 go get github.com/GiorgosMarga/DCA-manet
-
+```
 ## Usage
 
 **Prerequisites:**
