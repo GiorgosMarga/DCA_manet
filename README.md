@@ -33,28 +33,6 @@ The program generates the following files:
 * **clustered_test2.png:** A PNG image of the graph with clusters visually marked.
 
 ## Input File Format
-The input file specifies the graph structure. Each line has one of two meanings:
-
-* **Node Definition:**  Lines containing a comma `,` define a node. The format is:
-    ```
-    <node_id>,<weight>
-    ```
-    *  **node_id:** A unique numerical identifier for the node.
-    * **weight:** A unique numerical weight associated with the node.
-
-* **Edge Definition:** Lines containing a hyphen `-` define an edge (connection) between two nodes. The format is:
-    ```
-    <node_id1>-<node_id2>
-    ```
-
-**Example:**
-
-
-Absolutely! Here's how to modify your README to clearly explain this input file format.
-
-README Addition - Input File Format
-
-## Input File Format
 
 The input file specifies the graph structure. Each line has one of two meanings:
 
