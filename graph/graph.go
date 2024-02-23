@@ -143,6 +143,7 @@ func GraphFromFile(filename string) (*Graph, error) {
 }
 
 func (g *Graph) MakeGraphViz(filename string) error {
+	filename = strings.Split(filename, ".")[0]
 	graphName := fmt.Sprintf("graph_%s.dot", filename)
 	f, err := os.Create(graphName)
 	if err != nil {
@@ -163,8 +164,8 @@ func (g *Graph) MakeGraphViz(filename string) error {
 		}
 	}
 	f.WriteString("}")
-	output := fmt.Sprintf("%s.png", graphName)
-	cmd := exec.Command("neato", "-Tpng", graphName, "-o", output)
+	output := fmt.Sprintf("%s.png", filename)
+	cmd := exec.Command("neato", "-Tpng", filename, "-o", output)
 	err = cmd.Run()
 	if err != nil {
 		return err
@@ -190,6 +191,8 @@ func (g *Graph) MakeGraphVizClustered(filename string) error {
 	if !g.isClustered {
 		return fmt.Errorf("graph is not clustered. Call g.DCA() first")
 	}
+	filename = strings.Split(filename, ".")[0]
+
 	clusteredFile := fmt.Sprintf("clustered_%s.dot", filename)
 	f, err := os.Create(clusteredFile)
 	if err != nil {
@@ -219,9 +222,9 @@ func (g *Graph) MakeGraphVizClustered(filename string) error {
 		}
 	}
 	f.WriteString("}")
-	output := fmt.Sprintf("%s.png", clusteredFile)
+	output := fmt.Sprintf("clustered_%s.png", filename)
 	fmt.Println(output)
-	cmd := exec.Command("neato", "-Tpng", clusteredFile, "-o", output)
+	cmd := exec.Command("neato", "-Tpng", filename, "-o", output)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
