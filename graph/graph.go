@@ -165,7 +165,7 @@ func (g *Graph) MakeGraphViz(filename string) error {
 		}
 	}
 	f.WriteString("}")
-	output := fmt.Sprintf("%s.png", filename)
+	output := fmt.Sprintf("graph_%s.png", filename)
 	cmd := exec.Command("neato", "-Tpng", graphName, "-o", output)
 	err = cmd.Run()
 	if err != nil {
