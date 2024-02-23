@@ -3,10 +3,8 @@ package main
 import (
 	"flag"
 	"log"
-	"os"
-	"strconv"
-	"strings"
 	"sync"
+
 	"github.com/GiorgosMarga/CDA/graph"
 )
 

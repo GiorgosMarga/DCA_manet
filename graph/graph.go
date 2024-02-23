@@ -406,12 +406,9 @@ func (n *Node) onReceivingJOIN(join JOINMessage) {
 		return
 	}
 	if receivedCH {
-		c := n.FindBiggestIdNeighbor()
-		fmt.Printf("[%d] %+v\n", n.Id, c)
-		if c.IsClusterhead {
-			n.BelongsTo = c.Id
-		} else {
-			n.BelongsTo = c.BelongsTo
+		c := n.FindBiggestIdCluster()
+		if c.Weight == 0 {
+			return
 		}
 		n.broadcastJOIN(c.Id)
 		n.terminate = true
@@ -419,12 +416,12 @@ func (n *Node) onReceivingJOIN(join JOINMessage) {
 
 }
 
-func (n *Node) FindBiggestIdNeighbor() *Node {
+func (n *Node) FindBiggestIdCluster() *Node {
 	biggest := &Node{
 		Weight: 0,
 	}
 	for _, v := range n.Neighbors {
-		if v.Weight > biggest.Weight {
+		if v.Weight > biggest.Weight && v.IsClusterhead {
 			biggest = v
 		}
 	}
