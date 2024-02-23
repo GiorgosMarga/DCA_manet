@@ -69,7 +69,7 @@ package main
 import (
     "log"
 
-    "github.com/GiorgosMarga/DCA_manet/graph [invalid URL removed]"
+    "github.com/GiorgosMarga/DCA_manet/graph"
 )
 
 func main() {
