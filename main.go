@@ -18,8 +18,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	g.MakeGraphViz("graph_test.dot")
+	g.MakeGraphViz(file)
 	g.DCA()
-	g.MakeGraphVizClustered("clustered_2.dot")
+	g.MakeGraphVizClustered(file)
 	g.PrintClusters()
 }
