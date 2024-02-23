@@ -3,6 +3,7 @@ package graph
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"strconv"
@@ -150,7 +151,7 @@ func (g *Graph) MakeGraphViz(filename string) error {
 		return err
 	}
 	defer f.Close()
-
+	log.Printf("Generated graph dot file %s\n", graphName)
 	f.WriteString("graph {\n")
 	for _, v := range g.Nodes {
 		for _, neighbor := range v.Neighbors {
@@ -165,11 +166,12 @@ func (g *Graph) MakeGraphViz(filename string) error {
 	}
 	f.WriteString("}")
 	output := fmt.Sprintf("%s.png", filename)
-	cmd := exec.Command("neato", "-Tpng", filename, "-o", output)
+	cmd := exec.Command("neato", "-Tpng", graphName, "-o", output)
 	err = cmd.Run()
 	if err != nil {
 		return err
 	}
+	log.Printf("Generated graph png %s\n", output)
 	return nil
 }
 
@@ -193,12 +195,14 @@ func (g *Graph) MakeGraphVizClustered(filename string) error {
 	}
 	filename = strings.Split(filename, ".")[0]
 
-	clusteredFile := fmt.Sprintf("clustered_%s.dot", filename)
-	f, err := os.Create(clusteredFile)
+	clusteredName := fmt.Sprintf("clustered_%s.dot", filename)
+	f, err := os.Create(clusteredName)
 	if err != nil {
 		return err
 	}
-	f.WriteString("graph {\nlayout=\"fdp\" sep=\"10\"\n")
+	defer f.Close()
+	log.Printf("Generated clustered dot file %s\n", clusteredName)
+	f.WriteString("graph {\nsep=\"10\"\n")
 	for _, v := range g.Nodes {
 		var color string
 		if v.IsClusterhead {
@@ -223,8 +227,7 @@ func (g *Graph) MakeGraphVizClustered(filename string) error {
 	}
 	f.WriteString("}")
 	output := fmt.Sprintf("clustered_%s.png", filename)
-	fmt.Println(output)
-	cmd := exec.Command("neato", "-Tpng", filename, "-o", output)
+	cmd := exec.Command("neato", "-Tpng", clusteredName, "-o", output)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -233,6 +236,7 @@ func (g *Graph) MakeGraphVizClustered(filename string) error {
 	if err != nil {
 		return fmt.Errorf(fmt.Sprint(err) + ": " + stderr.String())
 	}
+	log.Printf("Generated clustered png %s\n", output)
 	return nil
 }
 func (g *Graph) Print() {
