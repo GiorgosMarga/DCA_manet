@@ -17,4 +17,6 @@ go get github.com/GiorgosMarga/DCA-manet
 go build
 
 # 2. Execute with a sample graph data file
-./CDA -f sample_graph.dot
+./CDA -f sample_graph.txt
+
+
