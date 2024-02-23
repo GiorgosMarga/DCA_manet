@@ -1,4 +1,4 @@
-module github.com/GiorgosMarga/CDA
+module github.com/GiorgosMarga/DCA_manet
 
 go 1.22.0
 

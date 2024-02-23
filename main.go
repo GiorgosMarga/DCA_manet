@@ -5,7 +5,7 @@ import (
 	"log"
 	"sync"
 
-	"github.com/GiorgosMarga/CDA/graph"
+	"github.com/GiorgosMarga/DCA_manet/graph"
 )
 
 var wg *sync.WaitGroup
