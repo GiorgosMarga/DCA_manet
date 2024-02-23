@@ -24,6 +24,14 @@ go get github.com/GiorgosMarga/DCA-manet
 2. Build the executable: `go build`
 3. Run the program:  `./CDA -f sample_graph.txt`
 
+**Output:**
+
+The program generates the following files:
+* **graph_test2.dot:** Contains a GraphViz description of the original graph.
+* **graph_test2.png:**  A PNG image of the original graph.
+* **clustered_test2.dot:** Contains a GraphViz description of the graph with clusters highlighted.
+* **clustered_test2.png:** A PNG image of the graph with clusters visually marked.
+
 **Input File Format:**
-*  [Describe the format here]
+*  [Describe the format 
 
