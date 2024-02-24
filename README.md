@@ -57,3 +57,28 @@ The input file specifies the graph structure. Each line has one of two meanings:
 2-3
 
 This example defines three nodes (1, 2, and 3) with weights of 1, 2, and 3 respectively. It also creates edges between nodes 1-2, 1-3, and 2-3.
+
+
+## Code Example
+
+Here's a basic example demonstrating how to use the package in your `main.go` file:
+
+```go
+package main
+
+import (
+    "log"
+
+    "github.com/GiorgosMarga/DCA_manet/graph"
+)
+
+func main() {
+    f := "graph.txt" // Assuming your input file is named 'graph.txt'
+    g, err := graph.GraphFromFile(f)
+    if err != nil {
+        log.Fatal(err)
+    }
+    g.MakeGraphViz(f)        // Generates the original graph visualization
+    g.DCA()                  // Performs the Distributed Clustering Algorithm
+    g.MakeGraphVizClustered(f) // Generates the clustered graph visualization
+}
