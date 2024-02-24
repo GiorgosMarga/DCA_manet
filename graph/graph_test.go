@@ -34,3 +34,15 @@ func TestConnectNodes(t *testing.T) {
 	err = g.ConnectNodes(1, 2)
 	assert.Nil(t, err)
 }
+
+func TestDCA(t *testing.T) {
+	filename := "test.txt"
+	g, err := GraphFromFile(filename)
+	assert.Nil(t, err)
+	err = g.MakeGraphViz(filename)
+	assert.Nil(t, err)
+	g.DCA()
+	err = g.MakeGraphVizClustered(filename)
+	assert.Nil(t, err)
+	g.PrintClusters()
+}

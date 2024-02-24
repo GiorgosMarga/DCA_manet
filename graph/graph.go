@@ -421,6 +421,7 @@ func (n *Node) onReceivingJOIN(join JOINMessage) {
 		}
 		n.broadcastJOIN(c.Id)
 		n.terminate = true
+		n.BelongsTo = c.Id
 	}
 
 }
